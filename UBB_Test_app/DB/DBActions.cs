@@ -91,12 +91,22 @@ namespace UBB_Test_app.DB
             return msg;
         }
 
-        internal string PersonEdit(Person changedPerson)
+        public string PersonEdit(Person changedPerson)
         {
             string msg = "";
             if (ConnectionCheck())
             {
                 msg = connectionEstablisherClient.MakeConnect(parser.EditPersonEncode(changedPerson));
+            }
+            return msg;
+        }
+
+        public string PersonDelete(int id)
+        {
+            string msg = "";
+            if (ConnectionCheck())
+            {
+                msg = connectionEstablisherClient.MakeConnect(parser.DeletePersonEncode(id));
             }
             return msg;
         }

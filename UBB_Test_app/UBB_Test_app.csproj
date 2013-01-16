@@ -46,22 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCityForm.cs">
+    <Compile Include="Forms\AddCityForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCityForm.Designer.cs">
+    <Compile Include="Forms\AddCityForm.Designer.cs">
       <DependentUpon>AddCityForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddPeopleForm.cs">
+    <Compile Include="Forms\AddPeopleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPeopleForm.Designer.cs">
+    <Compile Include="Forms\AddPeopleForm.Designer.cs">
       <DependentUpon>AddPeopleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChangePersonForm.cs">
+    <Compile Include="Forms\ChangePersonForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangePersonForm.Designer.cs">
+    <Compile Include="Forms\ChangePersonForm.Designer.cs">
       <DependentUpon>ChangePersonForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DB\DBActions.cs" />
@@ -70,16 +70,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>localDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DeleteCityForm.cs">
+    <Compile Include="Forms\DeleteCityForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeleteCityForm.Designer.cs">
+    <Compile Include="Forms\DeleteCityForm.Designer.cs">
       <DependentUpon>DeleteCityForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditCityForm.cs">
+    <Compile Include="Forms\DeletePersonForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditCityForm.Designer.cs">
+    <Compile Include="Forms\DeletePersonForm.Designer.cs">
+      <DependentUpon>DeletePersonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditCityForm.Designer.cs">
       <DependentUpon>EditCityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\City.cs" />
@@ -94,19 +100,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCPClient\ConnectionEstablisherClient.cs" />
     <Compile Include="TCPClient\Parser.cs" />
-    <EmbeddedResource Include="AddCityForm.resx">
+    <EmbeddedResource Include="Forms\AddCityForm.resx">
       <DependentUpon>AddCityForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPeopleForm.resx">
+    <EmbeddedResource Include="Forms\AddPeopleForm.resx">
       <DependentUpon>AddPeopleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChangePersonForm.resx">
+    <EmbeddedResource Include="Forms\ChangePersonForm.resx">
       <DependentUpon>ChangePersonForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeleteCityForm.resx">
+    <EmbeddedResource Include="Forms\DeleteCityForm.resx">
       <DependentUpon>DeleteCityForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditCityForm.resx">
+    <EmbeddedResource Include="Forms\DeletePersonForm.resx">
+      <DependentUpon>DeletePersonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditCityForm.resx">
       <DependentUpon>EditCityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">

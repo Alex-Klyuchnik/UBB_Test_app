@@ -41,10 +41,16 @@ namespace UBB_Test_app.TCPClient
             return ret;
         }
 
-        internal string EditPersonEncode(Person person)
+        public string EditPersonEncode(Person person)
         {
             string ret = string.Concat("#13#", person.Id.ToString(), "#", person.CityId.ToString(), "#",
                                        person.FIO);
+            return ret;
+        }
+
+        public string DeletePersonEncode(int id)
+        {
+            string ret = string.Concat("#14#", id.ToString());
             return ret;
         }
     }

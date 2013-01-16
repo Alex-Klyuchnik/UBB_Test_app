@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using UBB_Test_app.DB;
+using UBB_Test_app.Forms;
 
 namespace UBB_Test_app
 {
@@ -78,6 +72,12 @@ namespace UBB_Test_app
         {
             ChangePersonForm changePerson = new ChangePersonForm();
             changePerson.Show();
+        }
+
+        private void DeletePersonButton_Click(object sender, EventArgs e)
+        {
+            DeletePersonForm deletePerson = new DeletePersonForm();
+            deletePerson.Show();
         }
     }
 }

@@ -278,6 +278,7 @@
             this.DeletePersonButton.TabIndex = 11;
             this.DeletePersonButton.Text = "Удалить";
             this.DeletePersonButton.UseVisualStyleBackColor = true;
+            this.DeletePersonButton.Click += new System.EventHandler(this.DeletePersonButton_Click);
             // 
             // label1
             // 
