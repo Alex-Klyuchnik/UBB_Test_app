@@ -22,5 +22,18 @@ namespace WebServiceUnitTests
             string res = parser.AddCityEncode(city);
             Assert.AreEqual(res,"#02#0#Donetsk#Don#UA#False");
         }
+
+        [TestMethod]
+        public void Should_ConvertPersonObject_ToString()
+        {
+            Person person = new Person();
+            Parser parser = new Parser();
+
+            person.Id = 1;
+            person.CityId = 8;
+            person.FIO = "Ivanov Petr Olegovich";
+            string res = parser.AddPersonEncode(person);
+            Assert.AreEqual(res,"#12#1#8#Ivanov Petr Olegovich");
+        }
     }
 }
