@@ -13,7 +13,11 @@ namespace UBB_Test_app.DB
 
         internal bool ConnectionCheck()
         {
-            return true;       //TODO Realise connection check
+            if (connectionEstablisherClient.MakeConnect(parser.TestConnectionEncode()) == "Success")
+            {
+                return true;
+            }
+            return false;
         }
         
         internal void Add(City addedCity)

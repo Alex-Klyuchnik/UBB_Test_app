@@ -7,47 +7,57 @@ namespace UBB_Test_app.TCPClient
 {
     class ConnectionEstablisherClient
     {
+        private string[] ipList = { "8.8.8.8", "127.0.0.2", "127.0.0.1", "192.168.0.101" }; //List of server IP
         public string MakeConnect(string parsedString)
         {
             TcpClient server;
             string msg="";
-            try
-            {
-                server = new TcpClient("127.0.0.1", 9050); //9050
-            }
-            catch(SocketException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return "Error during connection to server";
-            }
-            NetworkStream networkStream = server.GetStream();
-            
-            //Sending data to server
-            //networkStream.Write(Encoding.ASCII.GetBytes(parsedString),0,parsedString.Length);
-            using (StreamWriter streamWriter = new StreamWriter(networkStream, Encoding.GetEncoding(1251)))
-            {
-                streamWriter.WriteLine(parsedString, Encoding.GetEncoding(1251));
-                streamWriter.Flush();
+            int serverNumber = 0;
+            bool tryToConnect = true;
 
-
-                //Recieving data from server
-                if (networkStream.CanRead)
+            while (tryToConnect)
+            {
+                try
                 {
-                    using (StreamReader streamReader = new StreamReader(networkStream))
-                        //TODO Fix msg recieving from server
+                    server = new TcpClient(ipList[serverNumber], 9050); //9050
+                    NetworkStream networkStream = server.GetStream();
+
+                    //Sending data to server
+                    //networkStream.Write(Encoding.ASCII.GetBytes(parsedString),0,parsedString.Length);
+                    using (StreamWriter streamWriter = new StreamWriter(networkStream, Encoding.GetEncoding(1251)))
                     {
-                        msg = streamReader.ReadLine();
+                        streamWriter.WriteLine(parsedString, Encoding.GetEncoding(1251));
+                        streamWriter.Flush();
+
+
+                        //Recieving data from server
+                        if (networkStream.CanRead)
+                        {
+                            using (StreamReader streamReader = new StreamReader(networkStream))
+                            {
+                                msg = streamReader.ReadLine();
+                            }
+                        }
+                        else
+                        {
+                            msg = "Disconnected without confirmation";
+                        }
                     }
-                    /*do
-                    { 
-                        byte[] data = new byte[1024];
-                        recv = networkStream.Read(data, 0, data.Length);
-                        msg = string.Concat(msg, Encoding.ASCII.GetString(data, 0, recv));
-                    } while (networkStream.DataAvailable);*/
+                    tryToConnect = false;
                 }
-                else
+
+                catch (SocketException ex)
                 {
-                    msg = "Disconnected without confirmation";
+                    MessageBox.Show(ex.Message);
+                    msg = "Error during connection to server";
+                    if (serverNumber<ipList.Length)
+                    {
+                        serverNumber++;
+                    }
+                    else
+                    {
+                        tryToConnect = false;
+                    }
                 }
             }
             return msg;
