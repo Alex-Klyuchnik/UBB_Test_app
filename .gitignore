@@ -1,0 +1,15 @@
+bin
+obj
+*Logs*
+*ReSharper*
+packages
+*.pyc
+*.db
+*.html
+*.suo
+*.user
+*.dotCover
+*ncrunch*
+*[Cc]overage*
+*[Nn][Cc]runch*
+*.Cache
