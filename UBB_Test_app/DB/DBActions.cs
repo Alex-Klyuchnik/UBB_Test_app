@@ -90,5 +90,15 @@ namespace UBB_Test_app.DB
             }
             return msg;
         }
+
+        internal string PersonEdit(Person changedPerson)
+        {
+            string msg = "";
+            if (ConnectionCheck())
+            {
+                msg = connectionEstablisherClient.MakeConnect(parser.EditPersonEncode(changedPerson));
+            }
+            return msg;
+        }
     }
 }

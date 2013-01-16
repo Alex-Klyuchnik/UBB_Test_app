@@ -73,5 +73,11 @@ namespace UBB_Test_app
             AddPeopleForm addPeople = new AddPeopleForm();
             addPeople.Show();
         }
+
+        private void ChangePersonButton_Click(object sender, EventArgs e)
+        {
+            ChangePersonForm changePerson = new ChangePersonForm();
+            changePerson.Show();
+        }
     }
 }

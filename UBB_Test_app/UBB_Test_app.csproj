@@ -58,6 +58,12 @@
     <Compile Include="AddPeopleForm.Designer.cs">
       <DependentUpon>AddPeopleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangePersonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePersonForm.Designer.cs">
+      <DependentUpon>ChangePersonForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB\DBActions.cs" />
     <Compile Include="DB\localDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddPeopleForm.resx">
       <DependentUpon>AddPeopleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePersonForm.resx">
+      <DependentUpon>ChangePersonForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteCityForm.resx">
       <DependentUpon>DeleteCityForm.cs</DependentUpon>

@@ -40,5 +40,12 @@ namespace UBB_Test_app.TCPClient
                                        person.FIO);
             return ret;
         }
+
+        internal string EditPersonEncode(Person person)
+        {
+            string ret = string.Concat("#13#", person.Id.ToString(), "#", person.CityId.ToString(), "#",
+                                       person.FIO);
+            return ret;
+        }
     }
 }

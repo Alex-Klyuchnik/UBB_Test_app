@@ -268,6 +268,7 @@
             this.ChangePersonButton.TabIndex = 10;
             this.ChangePersonButton.Text = "Изменить";
             this.ChangePersonButton.UseVisualStyleBackColor = true;
+            this.ChangePersonButton.Click += new System.EventHandler(this.ChangePersonButton_Click);
             // 
             // DeletePersonButton
             // 
