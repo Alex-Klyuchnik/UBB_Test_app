@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
@@ -31,15 +27,15 @@ namespace UBB_Test_app.TCPClient
 
         private bool check(IPAddress ip)
         {
-            StreamReader rdr;
-            StreamWriter wrtr;
-            using (TcpClient cl = new TcpClient(new IPEndPoint(ip, port)))
+            StreamReader reader;
+            StreamWriter writer;
+            using (TcpClient tcpClient = new TcpClient(new IPEndPoint(ip, port)))
             {
-                rdr = new StreamReader(cl.GetStream());
-                wrtr = new StreamWriter(cl.GetStream());
-                wrtr.WriteLine("#99");
-                wrtr.Flush();
-                if ((rdr.ReadLine() != "Success") || !cl.Connected)
+                reader = new StreamReader(tcpClient.GetStream());
+                writer = new StreamWriter(tcpClient.GetStream());
+                writer.WriteLine("#99");
+                writer.Flush();
+                if ((reader.ReadLine() != "Success") || !tcpClient.Connected)
                 {
                     return false;
                 }
