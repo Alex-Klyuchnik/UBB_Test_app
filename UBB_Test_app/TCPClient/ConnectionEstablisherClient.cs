@@ -7,7 +7,7 @@ namespace UBB_Test_app.TCPClient
 {
     class ConnectionEstablisherClient
     {
-        private string[] ipList = { "8.8.8.8", "127.0.0.2", "127.0.0.1", "192.168.0.101" }; //List of server IP
+        private string[] ipList = { "127.0.0.1", "192.168.0.101" }; //List of server IP
         public string MakeConnect(string parsedString)
         {
             TcpClient server;

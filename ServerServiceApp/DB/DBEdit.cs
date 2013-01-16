@@ -52,7 +52,7 @@ namespace ServerServiceApp.DB
             }
             catch (SqlException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
                 return false;
             }
         }
@@ -79,7 +79,7 @@ namespace ServerServiceApp.DB
             }
             catch (SqlException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
                 return false; 
             }
             
@@ -135,7 +135,7 @@ namespace ServerServiceApp.DB
             }
             catch (SqlException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
                 return false;
             }
             
@@ -158,7 +158,7 @@ namespace ServerServiceApp.DB
             }
             catch (SqlException ex)
             {
-                Console.WriteLine(ex.Message);   
+                MessageBox.Show(ex.Message);   
                 return false;    
             }
         }
@@ -204,7 +204,7 @@ namespace ServerServiceApp.DB
             }
             catch (SqlException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
             return cityName;
         }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\SenderOnline.cs" />
     <Compile Include="Forms\AddCityForm.cs">
       <SubType>Form</SubType>
     </Compile>

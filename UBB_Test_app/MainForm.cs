@@ -79,5 +79,11 @@ namespace UBB_Test_app
             DeletePersonForm deletePerson = new DeletePersonForm();
             deletePerson.Show();
         }
+
+        private void SendToServButton_Click(object sender, EventArgs e)
+        {
+            SenderOnline senderOnline = new SenderOnline();
+            MessageBox.Show(senderOnline.SendCity(), "Отправка");
+        }
     }
 }
