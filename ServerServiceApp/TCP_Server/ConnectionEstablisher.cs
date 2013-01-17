@@ -33,7 +33,7 @@ namespace ServerServiceApp.TCP_Server
             newsock.Close();
         }
 
-        public void Transmit(string msg)
+        public void RecieveCsv(string msg)
         {
             throw new NotImplementedException();
         }

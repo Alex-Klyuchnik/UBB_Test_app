@@ -10,22 +10,25 @@ namespace UBB_Test_app.TCPClient
     {
         public Synchronizer()
         {
-            fillIPlist();
+            FillIPList();
             synchronizer = new Thread(this.Run);
         }
 
         private Thread synchronizer;
-        private int port = 7777;
+        private int port = 9050;
         private List<IPAddress> ipList;
 
 
 
-        private void fillIPlist()
+        private void FillIPList()
         {
-            //TODO: fill IP address list from the settings container
+            foreach (string ipAddress in ConnectionEstablisherClient.ipList)
+            {
+                ipList.Add(IPAddress.Parse(ipAddress));
+            }
         }
 
-        private bool check(IPAddress ip)
+        private bool Check(IPAddress ip)
         {
             StreamReader reader;
             StreamWriter writer;
@@ -51,7 +54,7 @@ namespace UBB_Test_app.TCPClient
         {
             foreach (IPAddress ip in ipList)
             {
-                if (check(ip))
+                if (Check(ip))
                 {
                     return ip;
                 }
