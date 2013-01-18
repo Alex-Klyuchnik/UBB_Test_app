@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NoConnectionToServer" xml:space="preserve">
-    <value>Нет связи с сервером, попробуйте позже</value>
+  <data name="Failed" xml:space="preserve">
+    <value>Failed</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>Success</value>

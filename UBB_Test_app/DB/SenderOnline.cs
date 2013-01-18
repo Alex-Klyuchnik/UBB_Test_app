@@ -1,4 +1,5 @@
 ﻿using UBB_Test_app.Entities;
+using UBB_Test_app.Properties;
 
 namespace UBB_Test_app.DB
 {
@@ -14,7 +15,7 @@ namespace UBB_Test_app.DB
             city = dbActions.GetCity(lastId);
             msg = dbActions.Add(city);
             string delRes = dbActions.DeleteLocal(lastId);
-            if (delRes != "Success")
+            if (delRes != Resources.Success)
             {
                 msg = string.Concat("Deletion from local DB failed: ", delRes);
             }

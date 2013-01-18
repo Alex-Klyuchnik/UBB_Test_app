@@ -1,6 +1,7 @@
 ﻿using System;
 using ServerServiceApp.DB;
 using ServerServiceApp.Entities;
+using ServerServiceApp.Properties;
 
 namespace ServerServiceApp.TCP_Server
 {
@@ -25,25 +26,25 @@ namespace ServerServiceApp.TCP_Server
                     msg = dbEdit.MaxPop();
                     break;
                 case "#02": //Add city to DB 
-                    msg = dbEdit.AddCity(DecodeCity(input)) ? "Success" : "Failed";
+                    msg = dbEdit.AddCity(DecodeCity(input)) ? Resources.Success : Resources.Failed;
                     break;
                 case "#03": //Delete city from DB
-                    msg = dbEdit.RemoveCity(DecodeID(input)) ? "Success" : "Failed";
+                    msg = dbEdit.RemoveCity(DecodeID(input)) ? Resources.Success : Resources.Failed;
                     break;
                 case "#04": //Edit city by id in DB
-                    msg = dbEdit.EditCity(DecodeCity(input).Id, DecodeCity(input)) ? "Success" : "Failed";
+                    msg = dbEdit.EditCity(DecodeCity(input).Id, DecodeCity(input)) ? Resources.Success : Resources.Failed;
                     break;
                 case "#12": //Add person to DB
-                    msg = dbEdit.AddPerson(DecodePerson(input)) ? "Success" : "Failed";
+                    msg = dbEdit.AddPerson(DecodePerson(input)) ? Resources.Success : Resources.Failed;
                     break;
                 case "#13": //Edit person by id DB
-                    msg = dbEdit.EditPerson(DecodePerson(input).Id, DecodePerson(input)) ? "Success" : "Failed";
+                    msg = dbEdit.EditPerson(DecodePerson(input).Id, DecodePerson(input)) ? Resources.Success : Resources.Failed;
                     break;
                 case "#14": //Delete person from DB
-                    msg = dbEdit.RemovePerson(DecodeID(input)) ? "Success" : "Failed";
+                    msg = dbEdit.RemovePerson(DecodeID(input)) ? Resources.Success : Resources.Failed;
                     break;
                 case "#99": //Testing connection
-                    msg = "Success";
+                    msg = Resources.Success;
                     break;
                 
                 default:

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using UBB_Test_app.Entities;
 using System.Data.OleDb;
+using UBB_Test_app.Properties;
 using UBB_Test_app.TCPClient;
 
 namespace UBB_Test_app.DB
@@ -14,7 +15,7 @@ namespace UBB_Test_app.DB
 
         internal bool ConnectionCheck()
         {
-            if (connectionEstablisherClient.MakeConnect(parser.TestConnectionEncode()) == "Success")
+            if (connectionEstablisherClient.MakeConnect(parser.TestConnectionEncode()) == Resources.Success)
             {
                 return true;
             }
@@ -72,7 +73,7 @@ namespace UBB_Test_app.DB
             }
             else
             {
-                msg = "Нет связи с сервером, попробуйте позже"; //TODO Move to resource file string constants
+                msg = Resources.NoConnectionToServer;
             }
 
             return msg;
@@ -163,7 +164,7 @@ namespace UBB_Test_app.DB
 
         public string DeleteLocal(int id)
         {
-            string msg = "Success";
+            string msg = Resources.Success;
             string sql = string.Concat("delete from Cities where Id=@id");
 
             try

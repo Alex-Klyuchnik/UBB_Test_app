@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UBB_Test_app.Properties {
+namespace ServerServiceApp.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace UBB_Test_app.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UBB_Test_app.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ServerServiceApp.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,11 @@ namespace UBB_Test_app.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Нет связи с сервером, попробуйте позже.
+        ///   Ищет локализованную строку, похожую на Failed.
         /// </summary>
-        internal static string NoConnectionToServer {
+        internal static string Failed {
             get {
-                return ResourceManager.GetString("NoConnectionToServer", resourceCulture);
+                return ResourceManager.GetString("Failed", resourceCulture);
             }
         }
         

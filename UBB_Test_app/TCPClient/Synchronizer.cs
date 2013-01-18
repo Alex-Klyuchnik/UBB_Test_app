@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
+using UBB_Test_app.Properties;
 
 namespace UBB_Test_app.TCPClient
 {
@@ -38,7 +39,7 @@ namespace UBB_Test_app.TCPClient
                 writer = new StreamWriter(tcpClient.GetStream());
                 writer.WriteLine("#99");
                 writer.Flush();
-                if ((reader.ReadLine() != "Success") || !tcpClient.Connected)
+                if ((reader.ReadLine() != Resources.Success) || !tcpClient.Connected)
                 {
                     return false;
                 }
