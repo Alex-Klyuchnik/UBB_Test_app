@@ -111,9 +111,37 @@ namespace ServerServiceApp.DB
             }
         }
 
-        internal bool Report ()     //TODO Change method type; Implement
+        internal string Report ()     //TODO Implement
         {
-            return false;
+            string result = "";
+            //string getAllPersons = @"select c1.'CityName', p2.'FIO' from 'Cities' c1, 'People' p2 where p2.'CityID'=c1.'Id'";
+            string sql = @"SELECT c1.CityName, p2.Fio FROM Cities AS c1 INNER JOIN People AS p2 ON c1.Id = p2.CityId";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(SQLConnStr))
+                {
+                    using (SqlCommand command = new SqlCommand(sql,connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader dataReader = command.ExecuteReader())
+                        {
+                            while (dataReader.Read())
+                            {
+                                result = string.Concat(result,"#");
+                                result = string.Concat(result, dataReader[0].ToString());
+                                result = string.Concat(result, ";");
+                                result = string.Concat(result, dataReader[1].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                result = ex.Message;
+            }
+            return result;
         }
 
         internal bool AddPerson(Person addedPerson)     

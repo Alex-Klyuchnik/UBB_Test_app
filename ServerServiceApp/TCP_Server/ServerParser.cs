@@ -43,6 +43,9 @@ namespace ServerServiceApp.TCP_Server
                 case "#14": //Delete person from DB
                     msg = dbEdit.RemovePerson(DecodeID(input)) ? Resources.Success : Resources.Failed;
                     break;
+                case "#20": //Send report data
+                    msg = dbEdit.Report();
+                    break;
                 case "#99": //Testing connection
                     msg = Resources.Success;
                     break;
