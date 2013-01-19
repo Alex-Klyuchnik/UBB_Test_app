@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using UBB_Test_app.Entities;
 using System.Data.OleDb;
@@ -14,14 +15,20 @@ namespace UBB_Test_app.DB
         string ConnString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Projects\UBB_Test_app\UBB_Test_app\DB\localDB.accdb;Persist Security Info=True";
         ConnectionEstablisherClient connectionEstablisherClient = new ConnectionEstablisherClient();
         Parser parser = new Parser();
+        private IPAddress goodIP;
 
         internal bool ConnectionCheck()
         {
-            if (connectionEstablisherClient.MakeConnect(parser.TestConnectionEncode()) == Resources.Success)
+            Synchronizer synchronizer = new Synchronizer();
+            goodIP = synchronizer.GetIPAddress();           //Reset IP to good one
+            if (goodIP != null)
             {
                 return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
         
         public string Add(City addedCity)
@@ -29,7 +36,7 @@ namespace UBB_Test_app.DB
            string msg = "";
            if (ConnectionCheck())
            {
-               msg = connectionEstablisherClient.MakeConnect(parser.AddCityEncode(addedCity));
+               msg = connectionEstablisherClient.MakeConnect(parser.AddCityEncode(addedCity),goodIP);
            }
            else
            {
@@ -63,7 +70,7 @@ namespace UBB_Test_app.DB
 
         public string MaxPop ()     
         {
-           return connectionEstablisherClient.MakeConnect(parser.MaxPopEncode());
+           return connectionEstablisherClient.MakeConnect(parser.MaxPopEncode(),goodIP);
         }
 
         public string Delete (int id)
@@ -71,7 +78,7 @@ namespace UBB_Test_app.DB
             string msg = "";
             if (ConnectionCheck())
             {
-                msg = connectionEstablisherClient.MakeConnect(parser.DeleteCityEncode(id));
+                msg = connectionEstablisherClient.MakeConnect(parser.DeleteCityEncode(id),goodIP);
             }
             else
             {
@@ -86,7 +93,7 @@ namespace UBB_Test_app.DB
             string msg = "";
             if (ConnectionCheck())
             {
-                msg = connectionEstablisherClient.MakeConnect(parser.EditCityEncode(editedCity));
+                msg = connectionEstablisherClient.MakeConnect(parser.EditCityEncode(editedCity),goodIP);
             }
             return msg;
         }
@@ -96,7 +103,7 @@ namespace UBB_Test_app.DB
             string msg = "";
             if (ConnectionCheck())
             {
-                msg = connectionEstablisherClient.MakeConnect(parser.AddPersonEncode(addedPerson));
+                msg = connectionEstablisherClient.MakeConnect(parser.AddPersonEncode(addedPerson),goodIP);
             }
             return msg;
         }
@@ -106,7 +113,7 @@ namespace UBB_Test_app.DB
             string msg = "";
             if (ConnectionCheck())
             {
-                msg = connectionEstablisherClient.MakeConnect(parser.EditPersonEncode(changedPerson));
+                msg = connectionEstablisherClient.MakeConnect(parser.EditPersonEncode(changedPerson),goodIP);
             }
             return msg;
         }
@@ -116,7 +123,7 @@ namespace UBB_Test_app.DB
             string msg = "";
             if (ConnectionCheck())
             {
-                msg = connectionEstablisherClient.MakeConnect(parser.DeletePersonEncode(id));
+                msg = connectionEstablisherClient.MakeConnect(parser.DeletePersonEncode(id),goodIP);
             }
             return msg;
         }
@@ -193,7 +200,7 @@ namespace UBB_Test_app.DB
             string msg = "";
             if (ConnectionCheck())
             {
-                msg = SaveReport(parser.ReportDecode(connectionEstablisherClient.MakeConnect(parser.GetReportEncode())));
+                msg = SaveReport(parser.ReportDecode(connectionEstablisherClient.MakeConnect(parser.GetReportEncode(),goodIP)));
             }
             return msg;
         }

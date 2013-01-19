@@ -111,7 +111,7 @@ namespace ServerServiceApp.DB
             }
         }
 
-        internal string Report ()     //TODO Implement
+        internal string Report ()     
         {
             string result = "";
             //string getAllPersons = @"select c1.'CityName', p2.'FIO' from 'Cities' c1, 'People' p2 where p2.'CityID'=c1.'Id'";

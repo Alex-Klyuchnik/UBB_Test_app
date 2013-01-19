@@ -17,13 +17,13 @@ namespace UBB_Test_app.TCPClient
 
         private Thread synchronizer;
         private int port = 9050;
-        private List<IPAddress> ipList;
+        private List<IPAddress> ipList = new List<IPAddress>();
 
 
 
         private void FillIPList()
         {
-            foreach (string ipAddress in ConnectionEstablisherClient.ipList)
+            foreach (string ipAddress in ConnectionEstablisherClient.ipList)  //TODO Move to settings
             {
                 ipList.Add(IPAddress.Parse(ipAddress));
             }
@@ -33,11 +33,12 @@ namespace UBB_Test_app.TCPClient
         {
             StreamReader reader;
             StreamWriter writer;
-            using (TcpClient tcpClient = new TcpClient(new IPEndPoint(ip, port)))
+            Parser parser = new Parser();
+            using (TcpClient tcpClient = new TcpClient(ip.ToString(), port))
             {
                 reader = new StreamReader(tcpClient.GetStream());
                 writer = new StreamWriter(tcpClient.GetStream());
-                writer.WriteLine("#99");
+                writer.WriteLine(parser.TestConnectionEncode());
                 writer.Flush();
                 if ((reader.ReadLine() != Resources.Success) || !tcpClient.Connected)
                 {
@@ -47,11 +48,10 @@ namespace UBB_Test_app.TCPClient
                 {
                     return true;
                 }
-
             }
         }
 
-        private IPAddress GetIPAddress()
+        public IPAddress GetIPAddress()
         {
             foreach (IPAddress ip in ipList)
             {
@@ -60,8 +60,8 @@ namespace UBB_Test_app.TCPClient
                     return ip;
                 }
             }
-            //return null;
-            return default(IPAddress);
+            return null;
+            //return default(IPAddress);
         }
 
         public void Run()
