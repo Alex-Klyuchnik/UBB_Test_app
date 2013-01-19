@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 using UBB_Test_app.Properties;
 
 namespace UBB_Test_app.TCPClient
@@ -34,20 +35,28 @@ namespace UBB_Test_app.TCPClient
             StreamReader reader;
             StreamWriter writer;
             Parser parser = new Parser();
-            using (TcpClient tcpClient = new TcpClient(ip.ToString(), port))
+            try
             {
-                reader = new StreamReader(tcpClient.GetStream());
-                writer = new StreamWriter(tcpClient.GetStream());
-                writer.WriteLine(parser.TestConnectionEncode());
-                writer.Flush();
-                if ((reader.ReadLine() != Resources.Success) || !tcpClient.Connected)
+                using (TcpClient tcpClient = new TcpClient(ip.ToString(), port))
                 {
-                    return false;
+                    reader = new StreamReader(tcpClient.GetStream());
+                    writer = new StreamWriter(tcpClient.GetStream());
+                    writer.WriteLine(parser.TestConnectionEncode());
+                    writer.Flush();
+                    if ((reader.ReadLine() != Resources.Success) || !tcpClient.Connected)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
-                else
-                {
-                    return true;
-                }
+            }
+            catch(SocketException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
         }
 
