@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using UBB_Test_app.Entities;
 using System.Data.OleDb;
@@ -183,6 +185,32 @@ namespace UBB_Test_app.DB
             {
                 msg = ex.Message;
             }
+            return msg;
+        }
+
+        public string GetReport()
+        {
+            string msg = "";
+            if (ConnectionCheck())
+            {
+                msg = SaveReport(parser.ReportDecode(connectionEstablisherClient.MakeConnect(parser.GetReportEncode())));
+            }
+            return msg;
+        }
+
+        public string SaveReport (List<string> list)
+        {
+            string msg = "";
+            try
+            {
+                File.WriteAllLines(Resources.ReportPath,list);
+                msg = string.Concat(Resources.Success," ",Resources.SaveReportMessage," ", Resources.ReportPath);
+            }
+            catch (Exception ex)
+            {
+                msg = ex.Message;
+            }
+
             return msg;
         }
     }

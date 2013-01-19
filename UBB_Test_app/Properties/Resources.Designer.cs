@@ -70,6 +70,24 @@ namespace UBB_Test_app.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на d:\\projects\\report.csv.
+        /// </summary>
+        internal static string ReportPath {
+            get {
+                return ResourceManager.GetString("ReportPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Report saved here:.
+        /// </summary>
+        internal static string SaveReportMessage {
+            get {
+                return ResourceManager.GetString("SaveReportMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Success.
         /// </summary>
         internal static string Success {

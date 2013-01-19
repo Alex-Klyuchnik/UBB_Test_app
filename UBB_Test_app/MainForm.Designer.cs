@@ -109,6 +109,7 @@
             this.ReportButton.TabIndex = 4;
             this.ReportButton.Text = "Отчет";
             this.ReportButton.UseVisualStyleBackColor = true;
+            this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
             // 
             // OnlineLabel
             // 

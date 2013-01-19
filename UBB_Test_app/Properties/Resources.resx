@@ -120,6 +120,12 @@
   <data name="NoConnectionToServer" xml:space="preserve">
     <value>Нет связи с сервером, попробуйте позже</value>
   </data>
+  <data name="ReportPath" xml:space="preserve">
+    <value>d:\\projects\\report.csv</value>
+  </data>
+  <data name="SaveReportMessage" xml:space="preserve">
+    <value>Report saved here:</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Success</value>
     <comment>Success string</comment>

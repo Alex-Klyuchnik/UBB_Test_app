@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Forms;
+using UBB_Test_app.Properties;
 
 namespace UBB_Test_app
 {
@@ -84,6 +87,20 @@ namespace UBB_Test_app
         {
             SenderOnline senderOnline = new SenderOnline();
             MessageBox.Show(senderOnline.SendCity(), "Отправка");
+        }
+
+        private void ReportButton_Click(object sender, EventArgs e)
+        {
+            DBActions dbActions = new DBActions();
+            string report = dbActions.GetReport();
+            MessageBox.Show(report, "Report message");
+
+            //For debug purposes
+            /*string filePath = Resources.ReportPath;
+            List<string> list = new List<string>();
+            list.Add("Donetsk;Sidorov S S");
+            list.Add("Makeevka;Petrov P P");
+            File.WriteAllLines(filePath,list);*/
         }
     }
 }
