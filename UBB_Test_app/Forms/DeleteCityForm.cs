@@ -15,7 +15,7 @@ namespace UBB_Test_app
         {
             int id = Convert.ToInt32(IDTextBox.Text);
             DBActions dbActions = new DBActions();
-            string msg = dbActions.Delete(id);
+            string msg = dbActions.DeleteCity(id);
             MessageBox.Show(msg);
         }
     }

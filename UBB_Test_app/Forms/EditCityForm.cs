@@ -23,7 +23,7 @@ namespace UBB_Test_app
             editedCity.Country = CountryTextBox.Text;
             editedCity.Attrib = attribCheckBox.Checked;
 
-            string msg = dbActions.Edit(editedCity);
+            string msg = dbActions.EditCity(editedCity);
             MessageBox.Show(msg);
         }
     }

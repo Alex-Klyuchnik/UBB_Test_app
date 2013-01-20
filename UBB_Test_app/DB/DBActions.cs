@@ -31,7 +31,7 @@ namespace UBB_Test_app.DB
             }
         }
         
-        public string Add(City addedCity)
+        public string AddCity(City addedCity)
         {
            string msg = "";
            if (ConnectionCheck())
@@ -73,7 +73,7 @@ namespace UBB_Test_app.DB
            return connectionEstablisherClient.MakeConnect(parser.MaxPopEncode(),goodIP);
         }
 
-        public string Delete (int id)
+        public string DeleteCity (int id)
         {
             string msg = "";
             if (ConnectionCheck())
@@ -88,7 +88,7 @@ namespace UBB_Test_app.DB
             return msg;
         }
 
-        public string Edit(City editedCity)
+        public string EditCity (City editedCity)
         {
             string msg = "";
             if (ConnectionCheck())
@@ -171,10 +171,10 @@ namespace UBB_Test_app.DB
             return id;
         }
 
-        public string DeleteLocal(int id)
+        public string DeleteLocal(int id, string table)
         {
             string msg = Resources.Success;
-            string sql = string.Concat("delete from Cities where Id=@id");
+            string sql = string.Concat("delete from @table where Id=@id");
 
             try
             {
@@ -184,6 +184,7 @@ namespace UBB_Test_app.DB
                     using (OleDbCommand command = new OleDbCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@table", table);
                         command.ExecuteScalar();
                     }
                 }

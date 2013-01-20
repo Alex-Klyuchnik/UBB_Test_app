@@ -21,7 +21,7 @@ namespace UBB_Test_app
             addedCity.Attrib = AttributeCheckbox.Checked;
 
             DBActions dbAct = new DBActions();
-            dbAct.Add(addedCity);
+            dbAct.AddCity(addedCity);
             MessageBox.Show("Город добавлен успешно!"); //TODO Split local/network messages
         }
     }

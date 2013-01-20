@@ -13,8 +13,8 @@ namespace UBB_Test_app.DB
             int lastId = dbActions.LastId();
 
             city = dbActions.GetCity(lastId);
-            msg = dbActions.Add(city);
-            string delRes = dbActions.DeleteLocal(lastId);
+            msg = dbActions.AddCity(city);
+            string delRes = dbActions.DeleteLocal(lastId, "Cities");
             if (delRes != Resources.Success)
             {
                 msg = string.Concat("Deletion from local DB failed: ", delRes);
