@@ -87,6 +87,7 @@ namespace UBB_Test_app
         {
             SenderOnline senderOnline = new SenderOnline();
             MessageBox.Show(senderOnline.SendCity(), "Отправка");
+            MessageBox.Show(senderOnline.SendPerson(), "Отправка человека");
         }
 
         private void ReportButton_Click(object sender, EventArgs e)

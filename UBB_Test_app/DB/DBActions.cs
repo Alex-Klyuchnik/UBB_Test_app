@@ -44,7 +44,7 @@ namespace UBB_Test_app.DB
                using (OleDbConnection localConn = new OleDbConnection(ConnString))
                {
                    string sql = "insert into Cities(Id, CityName, Region, Country, Attribute) values (?,?,?,?,?)";
-                   int newID = LastId() + 1;
+                   int newID = LastId("Cities") + 1;
                    
                    /*using (OleDbCommand idCMD = new OleDbCommand("SELECT max(Id) FROM Cities", localConn))
                    {
@@ -131,7 +131,7 @@ namespace UBB_Test_app.DB
         public City GetCity(int id)
         {
             City city = new City();
-            string sql = string.Concat("select top 1 Id, CityName, Region, Country, Attribute from cities where id=@id");
+            string sql = "select top 1 Id, CityName, Region, Country, Attribute from cities where id=@id";
 
             using (OleDbConnection connection = new OleDbConnection(ConnString))
             {
@@ -152,20 +152,45 @@ namespace UBB_Test_app.DB
                     }
                 }
             }
-
-            MessageBox.Show(city.Name, "Send city message");
+            //MessageBox.Show(city.Name, "Send city message");
             return city;
         }
 
-        public int LastId()
+        public Person GetPerson(int id)
+        {
+            Person person = new Person();
+            string sql = "select top 1 Id, CityId, Fio from People where id=@id";
+
+            using (OleDbConnection connection = new OleDbConnection(ConnString))
+            {
+                using (OleDbCommand command = new OleDbCommand(sql, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@id", id);
+                    using (OleDbDataReader dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            person.Id = (int) dataReader[0];
+                            person.CityId = (int) dataReader[1];
+                            person.FIO = (string) dataReader[2];
+                        }
+                    }
+                }
+            }
+            return person;
+        }
+
+        public int LastId(string table)
         {
             int id = -1;
+            string sql = string.Format("SELECT max(Id) FROM {0}", table);
             using (OleDbConnection localConn = new OleDbConnection(ConnString))
             {
-                using (OleDbCommand idCMD = new OleDbCommand("SELECT max(Id) FROM Cities", localConn))
+                using (OleDbCommand command = new OleDbCommand(sql, localConn))
                 {
                     localConn.Open();
-                    id = (int) idCMD.ExecuteScalar();
+                    id = (int) command.ExecuteScalar();
                 }
             }
             return id;
@@ -174,7 +199,7 @@ namespace UBB_Test_app.DB
         public string DeleteLocal(int id, string table)
         {
             string msg = Resources.Success;
-            string sql = string.Concat("delete from @table where Id=@id");
+            string sql = string.Format("delete from {0} where Id=@id", table);
 
             try
             {
@@ -184,7 +209,6 @@ namespace UBB_Test_app.DB
                     using (OleDbCommand command = new OleDbCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
-                        command.Parameters.AddWithValue("@table", table);
                         command.ExecuteScalar();
                     }
                 }
