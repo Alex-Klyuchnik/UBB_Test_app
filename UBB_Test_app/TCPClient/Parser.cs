@@ -14,8 +14,7 @@ namespace UBB_Test_app.TCPClient
 
         public string AddCityEncode(City city)
         {
-            string ret = string.Concat("#02#0#", city.Name, delimiter, city.Region, delimiter, city.Country, delimiter,
-                                       city.Attrib.ToString());
+            string ret = string.Concat("#02#0#", city.Name, delimiter, city.Region, delimiter, city.Country, delimiter, city.Attrib.ToString());
             return ret;
         }
 
@@ -32,22 +31,19 @@ namespace UBB_Test_app.TCPClient
 
         public string EditCityEncode(City city)
         {
-            string ret = string.Concat("#04#", city.Id.ToString(),delimiter, city.Name , delimiter, city.Region, 
-                                       delimiter, city.Country, delimiter, city.Attrib.ToString());
+            string ret = string.Concat("#04#", city.Id.ToString(),delimiter, city.Name , delimiter, city.Region, delimiter, city.Country, delimiter, city.Attrib.ToString());
             return ret;
         }
 
         public string AddPersonEncode(Person person)
         {
-            string ret = string.Concat("#12#", person.Id.ToString(), delimiter, person.CityId.ToString(), delimiter,
-                                       person.FIO);
+            string ret = string.Concat("#12#", person.Id.ToString(), delimiter, person.CityId.ToString(), delimiter, person.FIO);
             return ret;
         }
 
         public string EditPersonEncode(Person person)
         {
-            string ret = string.Concat("#13#", person.Id.ToString(), delimiter, person.CityId.ToString(), delimiter,
-                                       person.FIO);
+            string ret = string.Concat("#13#", person.Id.ToString(), delimiter, person.CityId.ToString(), delimiter, person.FIO);
             return ret;
         }
 

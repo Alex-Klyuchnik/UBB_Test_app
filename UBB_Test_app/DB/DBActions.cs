@@ -13,9 +13,12 @@ namespace UBB_Test_app.DB
     public class DBActions
     {
         string ConnString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Projects\UBB_Test_app\UBB_Test_app\DB\localDB.accdb;Persist Security Info=True";
+        static string ConnStringSta = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Projects\UBB_Test_app\UBB_Test_app\DB\localDB.accdb;Persist Security Info=True";
         ConnectionEstablisherClient connectionEstablisherClient = new ConnectionEstablisherClient();
         Parser parser = new Parser();
         private IPAddress goodIP;
+        static public volatile bool citiesHasRecords;
+        static public volatile bool peopleHasRecords;
 
         internal bool ConnectionCheck()
         {
@@ -63,6 +66,7 @@ namespace UBB_Test_app.DB
                        command.ExecuteNonQuery();
                        newID++;
                        msg = Resources.Success;
+                       citiesHasRecords = true;
                    }
                }
             }
@@ -186,13 +190,20 @@ namespace UBB_Test_app.DB
         {
             int id = -1;
             string sql = string.Format("SELECT max(Id) FROM {0}", table);
-            using (OleDbConnection localConn = new OleDbConnection(ConnString))
+            try
             {
-                using (OleDbCommand command = new OleDbCommand(sql, localConn))
+                using (OleDbConnection localConn = new OleDbConnection(ConnString))
                 {
-                    localConn.Open();
-                    id = (int) command.ExecuteScalar();
+                    using (OleDbCommand command = new OleDbCommand(sql, localConn))
+                    {
+                        localConn.Open();
+                        id = (int) command.ExecuteScalar();
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             return id;
         }
@@ -245,6 +256,54 @@ namespace UBB_Test_app.DB
             }
 
             return msg;
+        }
+
+        static public void CheckCitiesEmptiness()
+        {
+            string sql = "select count(*) from Cities";
+            string rowPresence;
+            using (OleDbConnection connection = new OleDbConnection(ConnStringSta))
+            {
+                connection.Open();
+                using (OleDbCommand command = new OleDbCommand(sql,connection))
+                {
+                    rowPresence = command.ExecuteScalar().ToString();
+                }
+            }
+            MessageBox.Show(rowPresence, "Cities rows"); //TODO remove
+            switch (rowPresence)
+            {
+                case "0":
+                    citiesHasRecords = false;
+                    break;
+                default:
+                    citiesHasRecords = true;
+                    break;
+            }
+        }
+
+        static public void CheckPeopleEmptiness()
+        {
+            string sql = "select count (*) from People";
+            string rowPresence;
+            using (OleDbConnection connection = new OleDbConnection(ConnStringSta))
+            {
+                connection.Open();
+                using (OleDbCommand command = new OleDbCommand(sql, connection))
+                {
+                    rowPresence = command.ExecuteScalar().ToString();
+                }
+            }
+            MessageBox.Show(rowPresence, "People rows"); //TODO remove
+            switch (rowPresence)
+            {
+                case "0":
+                    peopleHasRecords = false;
+                    break;
+                default:
+                    peopleHasRecords = true;
+                    break;
+            }
         }
     }
 }

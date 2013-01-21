@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using UBB_Test_app.DB;
 using UBB_Test_app.Properties;
 
 namespace UBB_Test_app.TCPClient
@@ -75,11 +76,18 @@ namespace UBB_Test_app.TCPClient
 
         public void Run()
         {
+            SenderOnline senderOnline = new SenderOnline();
             IPAddress addr = GetIPAddress();
             if (addr != null)
             {
-                //TODO: function to check is local database empty
-                //TODO: call a function to send local data to server
+                while (DBActions.citiesHasRecords)
+                {
+                    senderOnline.SendCity();
+                }
+                while (DBActions.peopleHasRecords)
+                {
+                    senderOnline.SendPerson();
+                }
             }
             
             Thread.Sleep(30000);

@@ -20,6 +20,7 @@ namespace UBB_Test_app.DB
             {
                 msg = string.Concat("Deletion from local DB failed: ", delRes);
             }
+            DBActions.CheckCitiesEmptiness();
             return msg;
         }
 
@@ -38,6 +39,7 @@ namespace UBB_Test_app.DB
             {
                 msg = string.Concat("Deletion from local DB failed: ", delRes);
             }
+            DBActions.CheckPeopleEmptiness();
             return msg;
         }
     }

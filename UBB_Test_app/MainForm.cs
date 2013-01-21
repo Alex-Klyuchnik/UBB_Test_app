@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Forms;
 using UBB_Test_app.Properties;
+using UBB_Test_app.TCPClient;
 
 namespace UBB_Test_app
 {
@@ -25,7 +26,8 @@ namespace UBB_Test_app
             this.peopleTableAdapter.Fill(this.localDBDataSet.People);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "localDBDataSet.Cities". При необходимости она может быть перемещена или удалена.
             this.citiesTableAdapter.Fill(this.localDBDataSet.Cities);
-
+            /*Synchronizer synchro = new Synchronizer();
+            synchro.StartChecker();*/
         }
 
         private void AddButtonClick(object sender, EventArgs e)
