@@ -2,8 +2,9 @@
 using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Entities;
+using UBB_Test_app.Features;
 
-namespace UBB_Test_app
+namespace UBB_Test_app.Forms
 {
     public partial class EditCityForm : Form
     {
@@ -16,8 +17,9 @@ namespace UBB_Test_app
         {
             City editedCity = new City();
             DBActions dbActions = new DBActions();
+            InputSanitizer inputSanitizer = new InputSanitizer();
 
-            editedCity.Id = Convert.ToInt32(IDTextBox.Text);
+            editedCity.Id = Convert.ToInt32(inputSanitizer.DigitsOnly(IDTextBox.Text));
             editedCity.Name = NameTextBox.Text;
             editedCity.Region = RegionTextBox.Text;
             editedCity.Country = CountryTextBox.Text;

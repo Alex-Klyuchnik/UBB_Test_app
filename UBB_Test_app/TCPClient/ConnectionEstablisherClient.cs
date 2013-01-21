@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -47,7 +48,7 @@ namespace UBB_Test_app.TCPClient
                     //tryToConnect = false;
                 }
 
-                catch (SocketException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     msg = "Error during connection to server";

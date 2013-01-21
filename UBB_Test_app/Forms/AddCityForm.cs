@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Entities;
 
-namespace UBB_Test_app
+namespace UBB_Test_app.Forms
 {
     public partial class AddCityForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace UBB_Test_app
+﻿namespace UBB_Test_app.Forms
 {
     partial class AddPeopleForm
     {

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Entities;
+using UBB_Test_app.Features;
 
 namespace UBB_Test_app
 {
@@ -16,9 +17,10 @@ namespace UBB_Test_app
         {
             Person changedPerson = new Person();
             DBActions dbActions = new DBActions();
+            InputSanitizer inputSanitizer = new InputSanitizer();
 
-            changedPerson.Id = Convert.ToInt32(IDTexbBox.Text);
-            changedPerson.CityId = Convert.ToInt32(CityIDTextBox.Text);
+            changedPerson.Id = Convert.ToInt32(inputSanitizer.DigitsOnly(IDTexbBox.Text));
+            changedPerson.CityId = Convert.ToInt32(inputSanitizer.DigitsOnly(CityIDTextBox.Text));
             changedPerson.FIO = FIOTextBox.Text;
 
             string msg = dbActions.PersonEdit(changedPerson);

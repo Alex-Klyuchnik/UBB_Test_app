@@ -2,8 +2,9 @@
 using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Entities;
+using UBB_Test_app.Features;
 
-namespace UBB_Test_app
+namespace UBB_Test_app.Forms
 {
     public partial class AddPeopleForm : Form
     {
@@ -14,9 +15,10 @@ namespace UBB_Test_app
 
         private void AddPeopleButton_Click(object sender, EventArgs e)
         {
+            InputSanitizer  inputSanitizer = new InputSanitizer();
             Person addedPerson = new Person();
             addedPerson.FIO = FIOTextBox.Text;
-            addedPerson.CityId = Convert.ToInt32(CityIDTextBox.Text);
+            addedPerson.CityId = Convert.ToInt32(inputSanitizer.DigitsOnly(CityIDTextBox.Text));
 
             DBActions dbActions = new DBActions();
             string res = dbActions.PersonAdd(addedPerson);
