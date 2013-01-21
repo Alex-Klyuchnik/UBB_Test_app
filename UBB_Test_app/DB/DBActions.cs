@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 using UBB_Test_app.Entities;
 using System.Data.OleDb;
@@ -49,12 +50,6 @@ namespace UBB_Test_app.DB
                    string sql = "insert into Cities(Id, CityName, Region, Country, Attribute) values (?,?,?,?,?)";
                    int newID = LastId("Cities") + 1;
                    
-                   /*using (OleDbCommand idCMD = new OleDbCommand("SELECT max(Id) FROM Cities", localConn))
-                   {
-                       localConn.Open();
-                       newID = (int) idCMD.ExecuteScalar() + 1;
-                   }*/
-                  
                    using (OleDbCommand command = new OleDbCommand(sql,localConn))
                    {
                        localConn.Open();
@@ -164,7 +159,6 @@ namespace UBB_Test_app.DB
                     }
                 }
             }
-            //MessageBox.Show(city.Name, "Send city message");
             return city;
         }
 
@@ -254,7 +248,7 @@ namespace UBB_Test_app.DB
             string msg = "";
             try
             {
-                File.WriteAllLines(Resources.ReportPath,list);
+                File.WriteAllLines(Resources.ReportPath,list, Encoding.UTF8); //Проблемы с кириллицей!
                 msg = string.Concat(Resources.Success," ",Resources.SaveReportMessage," ", Resources.ReportPath);
             }
             catch (Exception ex)
@@ -277,7 +271,6 @@ namespace UBB_Test_app.DB
                     rowPresence = command.ExecuteScalar().ToString();
                 }
             }
-            MessageBox.Show(rowPresence, "Cities rows"); //TODO remove
             switch (rowPresence)
             {
                 case "0":
@@ -301,7 +294,6 @@ namespace UBB_Test_app.DB
                     rowPresence = command.ExecuteScalar().ToString();
                 }
             }
-            MessageBox.Show(rowPresence, "People rows"); //TODO remove
             switch (rowPresence)
             {
                 case "0":

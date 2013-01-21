@@ -58,7 +58,6 @@
             this.DeletePersonButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.SendToServButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.citiesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localDBDataSet)).BeginInit();
@@ -289,22 +288,11 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "Люди";
             // 
-            // SendToServButton
-            // 
-            this.SendToServButton.Location = new System.Drawing.Point(254, 125);
-            this.SendToServButton.Name = "SendToServButton";
-            this.SendToServButton.Size = new System.Drawing.Size(75, 23);
-            this.SendToServButton.TabIndex = 14;
-            this.SendToServButton.Text = "Отправить";
-            this.SendToServButton.UseVisualStyleBackColor = true;
-            this.SendToServButton.Click += new System.EventHandler(this.SendToServButton_Click);
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 482);
-            this.Controls.Add(this.SendToServButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DeletePersonButton);
@@ -365,7 +353,6 @@
         private System.Windows.Forms.Button DeletePersonButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button SendToServButton;
     }
 }
 

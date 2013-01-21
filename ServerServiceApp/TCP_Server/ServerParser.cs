@@ -61,7 +61,6 @@ namespace ServerServiceApp.TCP_Server
         public City DecodeCity(string cityInput) 
         {
             City output = new City();
-            //char delimiter = '#';
             string[] cityInputSplit = cityInput.Split(delimiter);
             output.Id = Convert.ToInt32(cityInputSplit[2]);
             output.Name = cityInputSplit[3];

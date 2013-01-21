@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -8,7 +7,7 @@ namespace ServerServiceApp.TCP_Server
 {
     public class ConnectionEstablisher
     {
-        public void Listen() //TODO Rewrite with networkStream. Read - Act - Write.
+        public void Listen() 
         {
             string msg= "";
             IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050);
@@ -26,16 +25,10 @@ namespace ServerServiceApp.TCP_Server
                 using (StreamWriter streamWriter = new StreamWriter(stream))
                 {
                     streamWriter.WriteLine(res);
-                    MessageBox.Show(res);
                 }
                 stream.Dispose();
             }
             newsock.Close();
-        }
-
-        public void RecieveCsv(string msg)
-        {
-            throw new NotImplementedException();
         }
     }
 }

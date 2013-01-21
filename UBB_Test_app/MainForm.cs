@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Forms;
-using UBB_Test_app.Properties;
 using UBB_Test_app.TCPClient;
 
 namespace UBB_Test_app
@@ -84,26 +81,12 @@ namespace UBB_Test_app
             DeletePersonForm deletePerson = new DeletePersonForm();
             deletePerson.Show();
         }
-
-        private void SendToServButton_Click(object sender, EventArgs e)
-        {
-            SenderOnline senderOnline = new SenderOnline();
-            MessageBox.Show(senderOnline.SendCity(), "Отправка");
-            MessageBox.Show(senderOnline.SendPerson(), "Отправка человека");
-        }
-
+       
         private void ReportButton_Click(object sender, EventArgs e)
         {
             DBActions dbActions = new DBActions();
             string report = dbActions.GetReport();
             MessageBox.Show(report, "Report message");
-
-            //For debug purposes
-            /*string filePath = Resources.ReportPath;
-            List<string> list = new List<string>();
-            list.Add("Donetsk;Sidorov S S");
-            list.Add("Makeevka;Petrov P P");
-            File.WriteAllLines(filePath,list);*/
         }
     }
 }
