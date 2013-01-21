@@ -32,7 +32,6 @@
             this.FIOTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.CitiesListBox = new System.Windows.Forms.ListBox();
             this.CityIDTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -71,14 +70,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Город";
             // 
-            // CitiesListBox
-            // 
-            this.CitiesListBox.FormattingEnabled = true;
-            this.CitiesListBox.Location = new System.Drawing.Point(185, 143);
-            this.CitiesListBox.Name = "CitiesListBox";
-            this.CitiesListBox.Size = new System.Drawing.Size(87, 30);
-            this.CitiesListBox.TabIndex = 5;
-            // 
             // CityIDTextBox
             // 
             this.CityIDTextBox.Location = new System.Drawing.Point(79, 105);
@@ -92,7 +83,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.CityIDTextBox);
-            this.Controls.Add(this.CitiesListBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FIOTextBox);
@@ -110,7 +100,6 @@
         private System.Windows.Forms.TextBox FIOTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox CitiesListBox;
         private System.Windows.Forms.TextBox CityIDTextBox;
     }
 }
