@@ -71,32 +71,34 @@ namespace UBB_Test_app.TCPClient
                 }
             }
             return null;
-            //return default(IPAddress);
         }
 
         public void Run()
         {
-            SenderOnline senderOnline = new SenderOnline();
-            DBActions.CheckCitiesEmptiness();
-            DBActions.CheckPeopleEmptiness();
-            IPAddress addr = GetIPAddress();
-            if (addr != null)
+            while (true)
             {
-                while (DBActions.citiesHasRecords)
+                SenderOnline senderOnline = new SenderOnline();
+                DBActions.CheckCitiesEmptiness();
+                DBActions.CheckPeopleEmptiness();
+                IPAddress addr = GetIPAddress();
+                if (addr != null)
                 {
-                    senderOnline.SendCity();
+                    while (DBActions.citiesHasRecords)
+                    {
+                        senderOnline.SendCity();
+                    }
+                    while (DBActions.peopleHasRecords)
+                    {
+                        senderOnline.SendPerson();
+                    }
                 }
-                while (DBActions.peopleHasRecords)
+                else
                 {
-                    senderOnline.SendPerson();
+                    MessageBox.Show(Resources.NoConnectionToServer, "Связь с сервером утеряна");
                 }
+
+                Thread.Sleep(30000); //TODO 30000
             }
-            else
-            {
-                MessageBox.Show(Resources.NoConnectionToServer, "Связь с сервером утеряна");
-            }
-            
-            Thread.Sleep(30); //TODO 30000
         }
 
         public void StartChecker()
