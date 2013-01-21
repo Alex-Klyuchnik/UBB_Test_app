@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Entities;
 using UBB_Test_app.Features;
+using UBB_Test_app.Properties;
 
 namespace UBB_Test_app.Forms
 {
@@ -19,14 +20,21 @@ namespace UBB_Test_app.Forms
             DBActions dbActions = new DBActions();
             InputSanitizer inputSanitizer = new InputSanitizer();
 
-            editedCity.Id = Convert.ToInt32(inputSanitizer.DigitsOnly(IDTextBox.Text));
-            editedCity.Name = NameTextBox.Text;
-            editedCity.Region = RegionTextBox.Text;
-            editedCity.Country = CountryTextBox.Text;
-            editedCity.Attrib = attribCheckBox.Checked;
+            try
+            {
+                editedCity.Id = Convert.ToInt32(inputSanitizer.DigitsOnly(IDTextBox.Text));
+                editedCity.Name = inputSanitizer.Names(NameTextBox.Text);
+                editedCity.Region = inputSanitizer.Names(RegionTextBox.Text);
+                editedCity.Country = inputSanitizer.Names(CountryTextBox.Text);
+                editedCity.Attrib = attribCheckBox.Checked;
 
-            string msg = dbActions.EditCity(editedCity);
-            MessageBox.Show(msg);
+                string msg = dbActions.EditCity(editedCity);
+                MessageBox.Show(msg);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(Resources.IdIncorrect + ex.Message);
+            }
         }
     }
 }

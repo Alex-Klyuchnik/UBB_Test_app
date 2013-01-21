@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Features;
+using UBB_Test_app.Properties;
 
 namespace UBB_Test_app.Forms
 {
@@ -16,9 +17,16 @@ namespace UBB_Test_app.Forms
         {
             InputSanitizer inputSanitizer = new InputSanitizer();
             DBActions dbActions = new DBActions();
-            int id = Convert.ToInt32(inputSanitizer.DigitsOnly(IDTextBox.Text));
-            string msg = dbActions.PersonDelete(id);
-            MessageBox.Show(msg, "Client message");
+            try
+            {
+                int id = Convert.ToInt32(inputSanitizer.DigitsOnly(IDTextBox.Text));
+                string msg = dbActions.PersonDelete(id);
+                MessageBox.Show(msg, "Client message");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(Resources.IdIncorrect + ex.Message);
+            }
         }
     }
 }

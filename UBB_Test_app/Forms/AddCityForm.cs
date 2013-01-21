@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using UBB_Test_app.DB;
 using UBB_Test_app.Entities;
+using UBB_Test_app.Features;
 
 namespace UBB_Test_app.Forms
 {
@@ -15,14 +16,16 @@ namespace UBB_Test_app.Forms
         private void AddCityButtonClick(object sender, EventArgs e)
         {
             City addedCity = new City();
-            addedCity.Name = CityTextBox.Text;
-            addedCity.Region = RegionTextBox.Text;
-            addedCity.Country = CountryTextBox.Text;
+            InputSanitizer inputSanitizer = new InputSanitizer();
+
+            addedCity.Name = inputSanitizer.Names(CityTextBox.Text);
+            addedCity.Region = inputSanitizer.Names(RegionTextBox.Text);
+            addedCity.Country = inputSanitizer.Names(CountryTextBox.Text);
             addedCity.Attrib = AttributeCheckbox.Checked;
 
             DBActions dbAct = new DBActions();
-            dbAct.AddCity(addedCity);
-            MessageBox.Show("Город добавлен успешно!"); //TODO Split local/network messages
+            string msg = dbAct.AddCity(addedCity);
+            MessageBox.Show(msg);
         }
     }
 }

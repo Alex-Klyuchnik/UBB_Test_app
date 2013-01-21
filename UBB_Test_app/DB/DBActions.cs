@@ -62,6 +62,7 @@ namespace UBB_Test_app.DB
                        command.Parameters.AddWithValue("Attribute", addedCity.Attrib);
                        command.ExecuteNonQuery();
                        newID++;
+                       msg = Resources.Success;
                    }
                }
             }

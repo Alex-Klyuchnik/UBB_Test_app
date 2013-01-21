@@ -61,6 +61,15 @@ namespace UBB_Test_app.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на ID заполнен некорректно - .
+        /// </summary>
+        internal static string IdIncorrect {
+            get {
+                return ResourceManager.GetString("IdIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Нет связи с сервером, попробуйте позже.
         /// </summary>
         internal static string NoConnectionToServer {
