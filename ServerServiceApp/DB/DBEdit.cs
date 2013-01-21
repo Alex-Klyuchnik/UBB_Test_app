@@ -90,8 +90,9 @@ namespace ServerServiceApp.DB
             SqlDataReader reader;
             using (SqlConnection connection = new SqlConnection(SQLConnStr))
             {
-                object[] objReader = new object[3];
+                object[] objReader = new object[2];
                 string result = "";
+                int cityId=-1;
                 string maxPopSQL = "select CityId, count(*) from People group by CityId";
                 using (SqlCommand command = new SqlCommand(maxPopSQL, connection))
                 {
@@ -99,13 +100,15 @@ namespace ServerServiceApp.DB
                     reader = command.ExecuteReader();
                     if (reader.Read())
                     {
-                        int columnsNumber = reader.GetValues(objReader);
-                        for (int i = 0; i < columnsNumber; i++)
-                        {
-                            result = string.Concat(result, objReader[i].ToString(), " ");
-                        }
+                        reader.GetValues(objReader);
+                        cityId = (int) objReader[0];
+                        result = objReader[1].ToString();
                     }
                     reader.Close();
+                    if (cityId != -1)
+                    {
+                        result = string.Concat("В городе ",ResolveCityName(cityId), result," человек");
+                    }
                     return result;
                 }
             }
