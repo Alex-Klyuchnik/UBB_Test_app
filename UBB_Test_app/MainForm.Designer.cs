@@ -33,7 +33,6 @@
             this.ChangeButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.ReportButton = new System.Windows.Forms.Button();
-            this.OnlineLabel = new System.Windows.Forms.Label();
             this.MaxpeopleButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,16 +109,6 @@
             this.ReportButton.Text = "Отчет";
             this.ReportButton.UseVisualStyleBackColor = true;
             this.ReportButton.Click += new System.EventHandler(this.ReportButton_Click);
-            // 
-            // OnlineLabel
-            // 
-            this.OnlineLabel.AutoSize = true;
-            this.OnlineLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.OnlineLabel.Location = new System.Drawing.Point(523, 113);
-            this.OnlineLabel.Name = "OnlineLabel";
-            this.OnlineLabel.Size = new System.Drawing.Size(40, 13);
-            this.OnlineLabel.TabIndex = 5;
-            this.OnlineLabel.Text = "Offline!";
             // 
             // MaxpeopleButton
             // 
@@ -324,7 +313,6 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.MaxpeopleButton);
-            this.Controls.Add(this.OnlineLabel);
             this.Controls.Add(this.ReportButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.ChangeButton);
@@ -352,7 +340,6 @@
         private System.Windows.Forms.Button ChangeButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button ReportButton;
-        private System.Windows.Forms.Label OnlineLabel;
         private System.Windows.Forms.Button MaxpeopleButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private DB.localDBDataSet localDBDataSet;

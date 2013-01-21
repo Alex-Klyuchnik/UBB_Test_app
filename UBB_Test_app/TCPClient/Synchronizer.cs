@@ -91,6 +91,10 @@ namespace UBB_Test_app.TCPClient
                     senderOnline.SendPerson();
                 }
             }
+            else
+            {
+                MessageBox.Show(Resources.NoConnectionToServer, "Связь с сервером утеряна");
+            }
             
             Thread.Sleep(30); //TODO 30000
         }
