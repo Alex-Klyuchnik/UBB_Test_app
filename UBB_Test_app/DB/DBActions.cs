@@ -44,7 +44,6 @@ namespace UBB_Test_app.DB
            }
            else
            {
-               
                using (OleDbConnection localConn = new OleDbConnection(ConnString))
                {
                    string sql = "insert into Cities(Id, CityName, Region, Country, Attribute) values (?,?,?,?,?)";
@@ -61,7 +60,6 @@ namespace UBB_Test_app.DB
                        command.ExecuteNonQuery();
                        newID++;
                        msg = Resources.Success;
-                       citiesHasRecords = true;
                    }
                }
             }
@@ -102,6 +100,10 @@ namespace UBB_Test_app.DB
             {
                 msg = connectionEstablisherClient.MakeConnect(parser.EditCityEncode(editedCity),goodIP);
             }
+            else
+            {
+                msg = Resources.NoConnectionToServer;
+            }
             return msg;
         }
 
@@ -111,6 +113,25 @@ namespace UBB_Test_app.DB
             if (ConnectionCheck())
             {
                 msg = connectionEstablisherClient.MakeConnect(parser.AddPersonEncode(addedPerson),goodIP);
+            }
+            else
+            {
+                using (OleDbConnection localConn = new OleDbConnection(ConnString))
+                {
+                    string sql = "insert into People(Id, CityId, FIO) values (?,?,?)";
+                    int newID = LastId("People") + 1;
+
+                    using (OleDbCommand command = new OleDbCommand(sql, localConn))
+                    {
+                        localConn.Open();
+                        command.Parameters.AddWithValue("Id", newID);
+                        command.Parameters.AddWithValue("CityId", addedPerson.CityId.ToString());
+                        command.Parameters.AddWithValue("FIO", addedPerson.FIO);
+                        command.ExecuteNonQuery();
+                        newID++;
+                        msg = Resources.Success;
+                    }
+                }
             }
             return msg;
         }
@@ -122,6 +143,10 @@ namespace UBB_Test_app.DB
             {
                 msg = connectionEstablisherClient.MakeConnect(parser.EditPersonEncode(changedPerson),goodIP);
             }
+            else
+            {
+                msg = Resources.NoConnectionToServer;
+            }
             return msg;
         }
 
@@ -131,6 +156,10 @@ namespace UBB_Test_app.DB
             if (ConnectionCheck())
             {
                 msg = connectionEstablisherClient.MakeConnect(parser.DeletePersonEncode(id),goodIP);
+            }
+            else
+            {
+                msg = Resources.NoConnectionToServer;
             }
             return msg;
         }
@@ -239,6 +268,10 @@ namespace UBB_Test_app.DB
             if (ConnectionCheck())
             {
                 msg = SaveReport(parser.ReportDecode(connectionEstablisherClient.MakeConnect(parser.GetReportEncode(),goodIP)));
+            }
+            else
+            {
+                msg = Resources.NoConnectionToServer;
             }
             return msg;
         }
