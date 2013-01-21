@@ -77,6 +77,8 @@ namespace UBB_Test_app.TCPClient
         public void Run()
         {
             SenderOnline senderOnline = new SenderOnline();
+            DBActions.CheckCitiesEmptiness();
+            DBActions.CheckPeopleEmptiness();
             IPAddress addr = GetIPAddress();
             if (addr != null)
             {
@@ -90,7 +92,7 @@ namespace UBB_Test_app.TCPClient
                 }
             }
             
-            Thread.Sleep(30000);
+            Thread.Sleep(30); //TODO 30000
         }
 
         public void StartChecker()

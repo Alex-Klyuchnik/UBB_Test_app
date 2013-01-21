@@ -75,7 +75,14 @@ namespace UBB_Test_app.DB
 
         public string MaxPop ()     
         {
-           return connectionEstablisherClient.MakeConnect(parser.MaxPopEncode(),goodIP);
+            if (ConnectionCheck())
+            {
+                return connectionEstablisherClient.MakeConnect(parser.MaxPopEncode(), goodIP);
+            }
+            else
+            {
+                return Resources.NoConnectionToServer;
+            }
         }
 
         public string DeleteCity (int id)

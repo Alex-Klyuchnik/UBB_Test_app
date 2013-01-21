@@ -33,5 +33,14 @@ namespace UBB_Test_app.Properties {
                 return ((string)(this["localDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"127.0.0.1\", \"192.168.0.101\"}")]
+        public string ListOfIP {
+            get {
+                return ((string)(this["ListOfIP"]));
+            }
+        }
     }
 }
